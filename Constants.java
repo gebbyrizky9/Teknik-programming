@@ -24,3 +24,10 @@ public class Constants2 {
 			+ paperHeight * CM_PER_INCH);
 	}
 }
+
+Class FloatingPoint {
+	public static void main(String[] args) { 
+		double x = 92.98;
+		int nx = (int) Math.round(x);
+	}
+}
