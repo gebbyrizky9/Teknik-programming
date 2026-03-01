@@ -8,6 +8,9 @@ import java.util.Map;
 public class EmployeeService {
     private Map<Integer, Employee> employees = new HashMap<>();
 
+    // --- INI ADALAH IMPLEMENTASI DEPENDENCY ---
+    // Method ini bergantung pada (membutuhkan) object Employee sebagai input
+
     public void addEmployee(Employee emp) {
         employees.put(emp.getId(), emp);
     }

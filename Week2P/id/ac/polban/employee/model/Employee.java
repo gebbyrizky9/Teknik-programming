@@ -3,6 +3,8 @@ package id.ac.polban.employee.model;
 public class Employee {
     private int id;
     private String name;
+
+    // --- INI ADALAH IMPLEMENTASI AGGREGATION ---
     private Department department;
     private EmploymentType type;
     private double salary;
