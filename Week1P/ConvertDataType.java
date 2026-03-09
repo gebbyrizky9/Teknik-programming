@@ -1,3 +1,5 @@
+package Week1P;
+
 class ConvertDataType {
 	static short methodOne(long l) {
 		int i = (int) l; return (short)i;

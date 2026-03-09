@@ -1,3 +1,5 @@
+package Week1P;
+
 public class FloatingPoint {
     public static void main(String[] args) { 
         double x = 92.98;

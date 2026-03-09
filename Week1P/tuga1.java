@@ -1,3 +1,5 @@
+package Week1P;
+
 import java.util.Scanner;
 
 public class tuga1 {
