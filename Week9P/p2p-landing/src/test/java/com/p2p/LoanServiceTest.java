@@ -23,7 +23,7 @@ public class LoanServiceTest {
     // TC-01: shouldRejectLoanWhenBorrowerNotVerified
     // ================================================================
     // SKENARIO : Borrower TIDAK terverifikasi (KYC = false)
-    //            mengajukan loan
+    // mengajukan loan
     // EXPECTED : Exception / loan tidak dibuat
     // ================================================================
     @Test
@@ -52,14 +52,16 @@ public class LoanServiceTest {
         });
 
         logger.info("Assert: IllegalArgumentException BERHASIL dilempar");
-        logger.info("========== TC-01: PASSED ✅ ==========");
+        logger.info("Kesimpulan: Borrower yang belum terverifikasi (KYC=false) DITOLAK oleh sistem dengan melempar exception");
+        logger.info("Hasil: SESUAI EKSPEKTASI - loan tidak dibuat, exception terlempar");
+        logger.info("========== TC-01: PASSED [OK] ==========");
     }
 
     // ================================================================
     // TC-02: shouldRejectLoanWhenAmountIsZeroOrNegative
     // ================================================================
     // SKENARIO : Borrower VALID (verified, score tinggi)
-    //            tapi Amount ≤ 0
+    // tapi Amount ≤ 0
     // EXPECTED : Exception
     // ================================================================
     @Test
@@ -85,7 +87,7 @@ public class LoanServiceTest {
         assertThrows(IllegalArgumentException.class, () -> {
             loanService.createLoan(borrower, zeroAmount);
         });
-        logger.info("Assert: Exception dilempar untuk amount = 0 ✅");
+        logger.info("Assert: Exception dilempar untuk amount = 0 [OK]");
 
         // =========================
         // Act & Assert — Test dengan amount negatif
@@ -94,16 +96,18 @@ public class LoanServiceTest {
         assertThrows(IllegalArgumentException.class, () -> {
             loanService.createLoan(borrower, negativeAmount);
         });
-        logger.info("Assert: Exception dilempar untuk amount = -500 ✅");
+        logger.info("Assert: Exception dilempar untuk amount = -500 [OK]");
 
-        logger.info("========== TC-02: PASSED ✅ ==========");
+        logger.info("Kesimpulan: Amount = 0 dan amount negatif (-500) keduanya DITOLAK oleh sistem");
+        logger.info("Hasil: SESUAI EKSPEKTASI - validasi amount bekerja dengan benar untuk kedua kasus");
+        logger.info("========== TC-02: PASSED [OK] ==========");
     }
 
     // ================================================================
     // TC-03: shouldApproveLoanWhenCreditScoreHigh
     // ================================================================
     // SKENARIO : Borrower VERIFIED
-    //            Credit score ≥ 600 (threshold)
+    // Credit score ≥ 600 (threshold)
     // EXPECTED : Status = APPROVED
     // ================================================================
     @Test
@@ -133,15 +137,17 @@ public class LoanServiceTest {
         assertNotNull(loan);
         assertEquals(Loan.Status.APPROVED, loan.getStatus());
 
-        logger.info("Assert: Loan status = {} ✅", loan.getStatus());
-        logger.info("========== TC-03: PASSED ✅ ==========");
+        logger.info("Assert: Loan status = {} [OK]", loan.getStatus());
+        logger.info("Kesimpulan: Borrower verified dengan credit score 750 (>= 600) mendapat loan APPROVED");
+        logger.info("Hasil: SESUAI EKSPEKTASI - status loan = APPROVED");
+        logger.info("========== TC-03: PASSED [OK] ==========");
     }
 
     // ================================================================
     // TC-04: shouldRejectLoanWhenCreditScoreLow
     // ================================================================
     // SKENARIO : Borrower VERIFIED
-    //            Credit score < 600 (di bawah threshold)
+    // Credit score < 600 (di bawah threshold)
     // EXPECTED : Status = REJECTED
     // ================================================================
     @Test
@@ -171,7 +177,9 @@ public class LoanServiceTest {
         assertNotNull(loan);
         assertEquals(Loan.Status.REJECTED, loan.getStatus());
 
-        logger.info("Assert: Loan status = {} ✅", loan.getStatus());
-        logger.info("========== TC-04: PASSED ✅ ==========");
+        logger.info("Assert: Loan status = {} [OK]", loan.getStatus());
+        logger.info("Kesimpulan: Borrower verified tapi credit score 400 (< 600) mendapat loan REJECTED");
+        logger.info("Hasil: SESUAI EKSPEKTASI - status loan = REJECTED");
+        logger.info("========== TC-04: PASSED [OK] ==========");
     }
 }
